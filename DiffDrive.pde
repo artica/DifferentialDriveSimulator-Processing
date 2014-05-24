@@ -2,8 +2,12 @@ int delayCounter = 0;
 int delayMaxCounter = (int)random(2000);
 int diffDriveState = 0;
 
-int motorSpeedLeft = (int)random(-255, 255);
-int motorSpeedRight = (int)random(-255, 255);
+int motorSpeedLeftTemp = (int)random(-255, 255);
+int motorSpeedRightTemp = (int)random(-255, 255);
+
+float motorSpeedLeft,  motorSpeedRight;
+float filter = 0.025;
+
 
 void DiffDriveProgram()
 {
@@ -13,7 +17,7 @@ void DiffDriveProgram()
     if(delayCounter < diffDriveState)
     {
       delayCounter++;
-       DiffDrive(motorSpeedLeft, motorSpeedRight);
+       DiffDrive((int)motorSpeedLeft, (int)motorSpeedRight);
     }
     else
     {
@@ -21,8 +25,8 @@ void DiffDriveProgram()
       delayMaxCounter = (int)random(250);
       diffDriveState++;
       
-      motorSpeedLeft = (int)random(250);
-      motorSpeedRight = (int)random(250);
+      motorSpeedLeftTemp = (int)random(250);
+      motorSpeedRightTemp = (int)random(250);
       
       
     }
@@ -33,7 +37,7 @@ void DiffDriveProgram()
     if(delayCounter < delayMaxCounter)
     {
       delayCounter++;
-        DiffDrive(motorSpeedLeft, motorSpeedRight);
+        DiffDrive((int)motorSpeedLeft, (int)motorSpeedRight);
     }
     else
     {
@@ -41,12 +45,15 @@ void DiffDriveProgram()
       delayMaxCounter = (int)random(1250);
       diffDriveState=0;
       
-      motorSpeedLeft = (int)random(-255, 255);
-      motorSpeedRight = (int)random(-255, 255);
+      motorSpeedLeftTemp = (int)random(-255, 255);
+      motorSpeedRightTemp = (int)random(-255, 255);
     }
   }
   
+  motorSpeedLeft = motorSpeedLeft * (1.0-filter) + motorSpeedLeftTemp * filter;
+  motorSpeedRight = motorSpeedRight * (1.0-filter) + motorSpeedRightTemp * filter;
   
+  println(motorSpeedLeft);
   
 }
 
@@ -54,11 +61,14 @@ void DiffDriveProgram()
 
 
 
+
+
+
+
+
 void DiffDrive(int _ml, int _mr)
 {
-  //println("--------------      "+_ml+"   "+_mr);
   motorValLeft = (int)map(_ml, 255, -255, -50, 50);
   motorValRight = (int)map(_mr, 255, -255, -50, 50);
-  //println("       "+motorValLeft+"   "+motorValRight);
 }
 

@@ -199,30 +199,49 @@ void mousePressed()
 
 ********************************************************/
 
-public void keyReleased() {
-  //previousY = 0;
-  if (key == '0') { // reset all
+public void keyReleased() 
+{
+  // reset all
+  if (key == '0') { 
     RobotOne.x = 0;
     RobotOne.y = 0;
     RobotOne.v = 0;
     RobotOne.w = 0;
     RobotOne.heading = -PI/2;
 
-    for (int i = pontos.size()-1; i >= 0; i--) { 
+    for (int i = pontos.size()-1; i >= 0; i--) 
+    { 
       Ponto ponto = (Ponto) pontos.get(i);
       pontos.remove(i);
       RobotOne.id = 0;
     }
   } 
-    
-  if (key == '3') 
-      addPath = !addPath;
+  
+  if (key == '9')
+  {
+    autonomousMode = !autonomousMode;
+    if (!autonomousMode) 
+    {
+      drawJoystick = true;
+      oneRectLeftX = 350;
+      oneRectRightY = 450;
+    }
+    else
+    {
+      drawJoystick = false;
+      oneRectLeftX = 70;
+      oneRectRightY = 170;
+    }
+  }
   
   if (key == '1') 
       drawHelpStuff = !drawHelpStuff;
       
   if (key == '2') 
       drawCameraDebug = !drawCameraDebug;
+      
+  if (key == '3') 
+      addPath = !addPath;
       
   if (key == '4') 
       cameraActive = !cameraActive;
@@ -239,7 +258,7 @@ public void keyReleased() {
   if (key == 'u')
   {
     beginRecord(PDF, "filename.pdf"); 
-   RobotDrawPath();
+    RobotDrawPath();
     endRecord();
   }
       

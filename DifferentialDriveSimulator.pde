@@ -78,7 +78,7 @@ boolean drawMotorsValues = true;
 boolean drawHelpStuff = true;
 boolean robotMove = true;
 boolean joystickActive = true;
-boolean drawJoystick = true;
+boolean drawJoystick = false;
 boolean cameraActive = true;
 boolean drawCameraDebug = true;
 boolean gridActive = false;
@@ -88,6 +88,8 @@ boolean drawPath = true;
 boolean activePath = true;
 
 boolean hidef = true;
+
+boolean autonomousMode = true;
 
 /**************
 BROWNIAN
@@ -172,14 +174,19 @@ void draw()
 {
   background(0);
   
+  text("FPS: "+frameRate, checkXpos, height-20);
+  
   if (drawJoystick)
     joystickMainDraw();
 
   robotDrawStage();  
   mainConditions();
  
-  //joystickDetectInteraction();
-  DiffDriveProgram();  
+   if (autonomousMode)
+     DiffDriveProgram(); 
+   else
+     joystickDetectInteraction();
+   
 }
 
 /********************************************************

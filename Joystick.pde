@@ -61,7 +61,7 @@ void joystickUpdater()
 
   // gXLeft & gYLeft
 
-    gXLeft = map(joyHorizontalText, -90, 90, -1.0, 1.0);
+  gXLeft = map(joyHorizontalText, -90, 90, -1.0, 1.0);
   gYLeft = map(joyVerticalText, -90, 90, -1.0, 1.0);
 
   gXRight = -gXLeft;

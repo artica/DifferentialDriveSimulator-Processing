@@ -53,8 +53,15 @@ void rectConditionsParser(String a, String b, String c)
 
 **********************************/
 
-int oneRectLeftX = 350;
-int oneRectRightY = 450;
+// position with joystick
+//int oneRectLeftX = 350;
+//int oneRectRightY = 450;
+
+// position without joystick
+int oneRectLeftX = 70;
+int oneRectRightY = 170;
+      
+      
 int oneRectY = 100;
 
 int rectsLeftX = 550;

@@ -27,32 +27,23 @@ void drawRobotStatus() {
  CAMERA DATA TEXT
  
  **********************************/
+int cameraDataYPos = -260;
 
 void drawCameraData()
 {
   fill(50, 255, 50, 100);
   pushMatrix();
   translate(25, 860);
-  text("camera keys:", 0, -180);
+  text("camera keys:", 0, cameraDataYPos);
 
-  text("t,g       rotateX: "+rX, 5, -160);
-  text("f,h       rotateY: "+rY, 5, -140);
-  text("v,b      rotateZ: "+rZ, 5, -120);
+  text("t,g       rotateX: "+rX, 5, cameraDataYPos+20);
+  text("f,h       rotateY: "+rY, 5, cameraDataYPos+40);
+  text("v,b      rotateZ: "+rZ, 5, cameraDataYPos+60);
 
-  text("a,d      xpos: "+xpos, 5, -80);
-  text("w,s       ypos: "+ypos, 5, -60);
-  text("z,x      zpos: "+zpos, 5, -40);
-  /*
-  text("1,2      eyeX: "+eyeX, 0, 0);
-   text("3,4      eyeY: "+eyeY, 0, 20);
-   text("5,6      eyeZ: "+eyeZ, 0, 40);
-   text("q,w      centerX: "+centerX, 0, 60);
-   text("e,r        centerY: "+centerY, 0, 80);
-   text("t,y        centerZ: "+centerZ, 0, 100);
-   text("a,s       upX: "+upX, 0, 120);
-   text("d,f       upY: "+upY, 0, 140);
-   text("g,h       upZ: "+upZ, 0, 160);
-   */
+  text("a,d      xpos: "+xpos, 5, cameraDataYPos+80);
+  text("w,s       ypos: "+ypos, 5, cameraDataYPos+100);
+  text("z,x      zpos: "+zpos, 5, cameraDataYPos+120);
+ 
   popMatrix();
 }
 
@@ -125,7 +116,8 @@ void drawAxles()
 void drawHelpText()
 {
   fill(255, 50, 50, 175);
-  text("press '0' to reset", checkXpos, checkYpos-110);
+  text("press '0' to reset", checkXpos, checkYpos-120);
+  text("press '9' to switch between autonomous / manual mode", checkXpos, checkYpos-105);
   fill(75, 150, 255, 175);
   text("press '1' to show / hide buttons", checkXpos, checkYpos-60);
   text("press '2' to draw camera info", checkXpos, checkYpos-40);
@@ -134,9 +126,7 @@ void drawHelpText()
   text("press '5' to show / hide grid", checkXpos, checkYpos+20);
   text("press '6' to show / hide motors", checkXpos, checkYpos+40);
   text("press '7' to show / hide robot", checkXpos, checkYpos+60);
-
-  text("FPS: "+frameRate, checkXpos, checkYpos+80);
-  text("Points IDs: "+RobotOne.id, checkXpos, checkYpos+100);
+  text("Points IDs: "+RobotOne.id, checkXpos, checkYpos+80);
 }
 
 
